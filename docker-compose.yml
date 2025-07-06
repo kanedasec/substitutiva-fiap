@@ -1,0 +1,45 @@
+services:
+
+  veiculos-service:
+    build: ./veiculos-service
+    container_name: veiculos-service
+    ports:
+      - "8000:8000"
+    networks:
+      - app-network
+
+  compradores-service:
+    build: ./compradores-service
+    container_name: compradores-service
+    ports:
+      - "8001:8001"
+    networks:
+      - app-network
+
+  pagamentos-service:
+    build: ./pagamentos-service
+    container_name: pagamentos-service
+    ports:
+      - "8003:8003"
+    networks:
+      - app-network
+
+  vendas-orquestrador:
+    build: ./vendas-orquestrador
+    container_name: vendas-orquestrador
+    ports:
+      - "8002:8002"
+    environment:
+      VEICULOS_URL: http://veiculos:8000
+      COMPRADORES_URL: http://compradores:8001
+      PAGAMENTOS_URL: http://pagamentos:8003
+    depends_on:
+      - veiculos-service
+      - compradores-service
+      - pagamentos-service
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

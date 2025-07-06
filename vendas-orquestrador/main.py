@@ -7,9 +7,9 @@ from app.application.orquestrador_venda import OrquestradorVenda
 
 app = FastAPI()
 
-veiculos = VeiculosClient("http://localhost:8000")
-compradores = CompradoresClient("http://localhost:8001")
-pagamentos = PagamentosClient("http://localhost:8003")
+veiculos = VeiculosClient("http://veiculos-service:8000")
+compradores = CompradoresClient("http://compradores-service:8001")
+pagamentos = PagamentosClient("http://pagamentos-service:8003")
 
 orquestrador = OrquestradorVenda(
     veiculos=veiculos,
