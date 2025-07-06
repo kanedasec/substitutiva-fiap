@@ -27,4 +27,5 @@ class RepositorioVeiculoEmMemoria:
         if not veiculo:
             raise ValueError("Veículo não encontrado")
         veiculo.vendido = True
+        self.atualizar(veiculo)
         return veiculo

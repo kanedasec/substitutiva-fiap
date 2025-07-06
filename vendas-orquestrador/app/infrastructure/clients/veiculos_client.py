@@ -32,14 +32,13 @@ class VeiculosClient:
             return False
 
     def baixar(self, veiculo_id):
-        def baixar(self, veiculo_id):
-            try:
-                resp = requests.patch(
-                    f"{self.base_url}/veiculos/{veiculo_id}/reserva",
-                    json={"vendido": True},
-                    timeout=5
-                )
-                return resp.status_code == 200
-            except Exception as e:
-                print(f"[CLIENT VEICULOS] Erro ao baixar veículo {veiculo_id}: {e}")
-                return False
+        try:
+            resp = requests.patch(
+                f"{self.base_url}/veiculos/{veiculo_id}/venda",  # ← esse endpoint!
+                timeout=5
+            )
+            return resp.status_code == 200
+        except Exception as e:
+            print(f"[CLIENT VEICULOS] Erro ao baixar veículo {veiculo_id}: {e}")
+            return False
+

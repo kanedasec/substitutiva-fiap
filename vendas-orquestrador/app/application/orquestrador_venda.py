@@ -7,7 +7,7 @@ class OrquestradorVenda:
         self.veiculos = veiculos
         self.compradores = compradores
         self.pagamentos = pagamentos
-        self.vendas_em_memoria = {}  # apenas simulação, substitua por DB se necessário
+        self.vendas_em_memoria = {}  # Substituir por algum DB posteriormente
 
     def iniciar_venda(self, veiculo_id, comprador_id):
         print("[ORQUESTRADOR] Iniciando venda")
