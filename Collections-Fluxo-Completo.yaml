@@ -1,0 +1,257 @@
+type: collection.insomnia.rest/5.0
+name: Substitutiva - Fiap
+meta:
+  id: wrk_3a4aa114e94a4fc299d4958a8929b3bb
+  created: 1751032799475
+  modified: 1751815749526
+  description: ""
+collection:
+  - name: SOAT - Substitutiva
+    meta:
+      id: fld_e891f289b0e44bb3be59d28b6f1a5842
+      created: 1751034728622
+      modified: 1751034728622
+      sortKey: -1751034728622
+      description: ""
+    children:
+      - name: veiculos-service
+        meta:
+          id: fld_5581e49e5c7345718be9a6fc4f7d7bd1
+          created: 1751034741792
+          modified: 1751840010037
+          sortKey: -1751034741792
+          description: ""
+        scripts:
+          afterResponse: ""
+          preRequest: ""
+      - name: compradores-service
+        meta:
+          id: fld_b6dfaa38a02b41f9947f93d2cbee21f2
+          created: 1751034770882
+          modified: 1751840003912
+          sortKey: -1751034770882
+          description: ""
+        scripts:
+          afterResponse: ""
+          preRequest: ""
+      - name: vendas-orquestrador
+        meta:
+          id: fld_fb7036b8f57e424a971e886a52660f6f
+          created: 1751037174407
+          modified: 1751840007600
+          sortKey: -1751034749064.5
+          description: ""
+        scripts:
+          afterResponse: ""
+          preRequest: ""
+      - name: pagamentos-service
+        meta:
+          id: fld_a98da50313b840068696b1ac57fdebfe
+          created: 1751037760849
+          modified: 1751840006440
+          sortKey: -1751034756337
+          description: ""
+        scripts:
+          afterResponse: ""
+          preRequest: ""
+      - name: Fluxo completo
+        meta:
+          id: fld_c89ca36ab29a4179af7c531cd617e66c
+          created: 1751038203312
+          modified: 1751840001764
+          sortKey: -1751034770982
+          description: ""
+        children:
+          - url: http://127.0.0.1:8000/veiculos
+            name: criar-veiculo
+            meta:
+              id: req_39c2f80819b746de8fe69e36265fa1ac
+              created: 1751038226020
+              modified: 1751927093713
+              isPrivate: false
+              description: ""
+              sortKey: -1751038229262
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                  "marca": "Mazda",
+                  "modelo": "RX-7",
+                  "ano": 2006,
+                  "cor": "Laranja",
+                  "preco": 150000.00
+                }
+            parameters:
+              - name: ""
+                value: ""
+                id: pair_43f7a08e863e4cb09d3c6f0f4a4803ed
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/8.6.1
+            scripts:
+              preRequest: ""
+              afterResponse: ""
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://127.0.0.1:8001/compradores
+            name: cadastrar-comprador
+            meta:
+              id: req_38d1357a999a4cc6b9b6543842d334e6
+              created: 1751038236783
+              modified: 1751927289677
+              isPrivate: false
+              description: ""
+              sortKey: -1751038229237
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                  "nome": "Isabela Nunes",
+                  "cpf": "111.111.111-11",
+                  "email": "isafadinhagmail.com",
+                  "endereco": "Alphaville, Barueri-SP"
+                }
+            parameters:
+              - name: ""
+                value: ""
+                id: pair_43f7a08e863e4cb09d3c6f0f4a4803ed
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/8.6.1
+            scripts:
+              preRequest: ""
+              afterResponse: ""
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://localhost:8003/pagamentos/15abd4e9/confirmar
+            name: confirmar-pagamento
+            meta:
+              id: req_d029e2f687b84337bdfdc71e03073c38
+              created: 1751038344254
+              modified: 1751837742974
+              isPrivate: false
+              description: ""
+              sortKey: -1751038229227.625
+            method: POST
+            body:
+              mimeType: application/json
+              text: ""
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.2.0
+            scripts:
+              preRequest: ""
+              afterResponse: ""
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://127.0.0.1:8002/vendas
+            name: venda-veiculo
+            meta:
+              id: req_562c1c17dfa841bea0e6575621442eff
+              created: 1751038615399
+              modified: 1751837737021
+              isPrivate: false
+              description: ""
+              sortKey: -1751038229232.3125
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                  "veiculo_id": "3a040ab1-b615-43a0-91f4-09403788f29e",
+                	"comprador_id": "d057aee3-05e4-47ec-83b4-b97e2aa5053c"
+                }
+            parameters:
+              - name: ""
+                value: ""
+                id: pair_43f7a08e863e4cb09d3c6f0f4a4803ed
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/8.6.1
+            scripts:
+              preRequest: ""
+              afterResponse: ""
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: http://127.0.0.1:8002/vendas/2e93ebad-1e68-493c-95b6-d444f8e0ea64/concluir
+            name: concluir-venda
+            meta:
+              id: req_b5d791f0cfda46e381140350a51c2f5d
+              created: 1751829343733
+              modified: 1751837820368
+              isPrivate: false
+              description: ""
+              sortKey: -1751038229127.625
+            method: POST
+            body:
+              mimeType: application/json
+              text: ""
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.2.0
+            scripts:
+              preRequest: ""
+              afterResponse: ""
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+        scripts:
+          afterResponse: ""
+          preRequest: ""
+    scripts:
+      afterResponse: ""
+      preRequest: ""
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_9746fac05b6acff4eca2e8a260980286aa1c4639
+    created: 1751815749598
+    modified: 1751815749598
+environments:
+  name: Base Environment
+  meta:
+    id: env_9746fac05b6acff4eca2e8a260980286aa1c4639
+    created: 1751032799479
+    modified: 1751815749524
+    isPrivate: false
