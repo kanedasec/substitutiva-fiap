@@ -1,0 +1,35 @@
+name: 🔍 Public Code Scanning Alert Check
+
+on:
+  workflow_call:
+
+permissions:
+  contents: read
+  security-events: read
+
+jobs:
+  check_alerts:
+    name: 🚨 Check for Open Security Alerts
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🔎 Fetch Code Scanning Alerts (anonymous)
+        id: fetch_alerts
+        run: |
+          REPO="${{ github.repository }}"
+          curl -sSL "https://api.github.com/repos/$REPO/code-scanning/alerts?state=open&per_page=100" \
+            -H "Accept: application/vnd.github+json" > alerts.json
+
+          count=$(jq '[.[] | select(.rule.severity | ascii_downcase == "medium" or ascii_downcase == "high" or ascii_downcase == "critical")] | length' alerts.json)
+
+          echo "Found $count open medium+ severity alerts"
+          echo "ALERT_COUNT=$count" >> $GITHUB_ENV
+
+      - name: ❌ Fail if Alerts Found with Banner
+        if: env.ALERT_COUNT != '0'
+        run: |
+          echo "❌ Security issues (MEDIUM or higher) are still open. Please resolve before proceeding."
+          exit 1
+
+      - name: ✅ No Medium or higher issues
+        if: env.ALERT_COUNT == '0'
+        run: echo "✅ All clear! No open security alerts with severity medium or above."

@@ -1,0 +1,32 @@
+
+name: Dynamic Analisys
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  security-events: write  # 👈 REQUIRED for uploading SARIF
+
+jobs:
+  zap_scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: 🚀 Start the application stack
+        run: |
+          docker compose up -d --build
+          sleep 15
+
+      - name: ⚡️ Run OWASP ZAP baseline scan
+        uses: zaproxy/action-baseline@v0.14.0
+        with:
+          target: 'https://localhost'
+          allow_issue_writing: false 
+          
+      - name: 🔧 Shutdown application stack
+        run: docker compose down --volumes
+
+      

@@ -1,0 +1,23 @@
+name: Full Security Pipeline
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  security-events: write  # 👈 REQUIRED for uploading SARIF
+
+jobs:
+  Secrets-Scan:
+    uses: ./.github/workflows/gitleaks-secret.yml
+
+  Static-Analysis:
+    uses: ./.github/workflows/static-analysis.yml
+
+  Dependency-Scan:
+    uses: ./.github/workflows/sca-scan.yml
+    needs: Static-Analysis
+
+  Ready-for-Production:
+    uses: ./.github/workflows/prd-ready.yml
+    needs: Dependency-Scan
