@@ -46,13 +46,13 @@ docker compose up --build
 
 ## 📚 Endpoints Principais
 
-### Veículos (`localhost:8001`)
+### Veículos (`localhost:8000`)
 - `POST /veiculos`
 - `GET /veiculos`
 - `PATCH /veiculos/{id}`
 - `PATCH /veiculos/{id}/reserva`
 
-### Compradores (`localhost:8002`)
+### Compradores (`localhost:8001`)
 - `POST /compradores`
 - `GET /compradores/{id}`
 
@@ -61,7 +61,7 @@ docker compose up --build
 - `GET /pagamentos/{codigo}`
 - `POST /pagamentos/{codigo}/confirmar`
 
-### Vendas (Orquestrador) (`localhost:8004`)
+### Vendas (Orquestrador) (`localhost:8002`)
 - `POST /vendas`
 - `POST /vendas/{id}/concluir`
 
