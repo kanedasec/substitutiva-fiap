@@ -13,11 +13,3 @@ jobs:
 
   Static-Analysis:
     uses: ./.github/workflows/static-analysis.yml
-
-  # Dependency-Scan:
-  #   uses: ./.github/workflows/sca-scan.yml
-  #   needs: Static-Analysis
-
-  Ready-for-Production:
-    uses: ./.github/workflows/prd-ready.yml
-    needs: Static-Analysis
