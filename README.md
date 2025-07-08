@@ -95,3 +95,4 @@ app/
 Projeto acadêmico desenvolvido por Vernon Simões como parte da Pós-Tech de Arquitetura de Software (FIAP).  
 
 ---
+
